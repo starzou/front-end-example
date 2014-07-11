@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>JS 原生操作Dom Example </title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="app/lib/bootstrap/css/bootstrap.css"/>
+    </head>
+    <body>
+        <div class="container">
+            <h1>这是标题</h1>
+        </div>
+
+        <script src="app/lib/jquery-1.11.1.js" type="text/javascript" charset="utf-8"></script>
+        <script src="app/lib/bootstrap/js/bootstrap.js" type="text/javascript" charset="utf-8"></script>
+        <script type="text/javascript" charset="utf-8">
+            $(function() {
+                console.log($(document));
+
+                console.log('document:', document);
+                var nodes = document.childNodes;
+                console.log(nodes);
+
+                var scripts = document.scripts;
+                console.log('scripts', scripts);
+
+                var ss = document.querySelectorAll('script');
+                console.log("ss", ss);
+
+                var div = document.querySelector('div.container');
+                for (var i = 2; i < 7; i++) {
+                    var h = document.createElement('h' + i);
+                    var txt = document.createTextNode('这是标题' + i);
+                    h.appendChild(txt);
+                    //                  $('.container').append(h);
+                    div.appendChild(h);
+                }
+
+                console.log("Node", Node);
+            });
+        </script>
+    </body>
+</html>

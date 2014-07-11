@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>DOM Event</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="app/lib/bootstrap/css/bootstrap.css"/>
+        <style type="text/css">
+            div, h1 {
+                border: #67B168 1px solid;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <h1 class="text-center">title</h1>
+            <h1 class="text-center">title 2</h1>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <ul class="nav nav-pills nav-stacked" role="tablist">
+                        <li class="active">
+                            <a href="#">
+                                <span class="badge pull-right" id="s-width"></span>
+                                Width
+                            </a>
+                        </li>
+                        <li class="active">
+                            <a href="#">
+                                <span class="badge pull-right" id="s-height"></span>
+                                Height
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="btn btn-primary">
+                        1
+                    </div>
+                    <div class="btn btn-primary" id="btn2">
+                        2
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="app/lib/jquery-1.11.1.js" type="text/javascript" charset="utf-8"></script>
+        <script src="app/lib/bootstrap/js/bootstrap.js" type="text/javascript" charset="utf-8"></script>
+        <script type="text/javascript" charset="utf-8">
+            $(function() {
+                var callback = function(event) {
+                    console.log(event.target, event);
+                }
+                //          $('body').click(callback);
+                $('.container').click(callback);
+                //          $('.text-center').click(callback);
+
+                var sWidth = $('#s-width');
+                var sHeight = $('#s-height');
+                $(window).resize(function(event) {
+                    var html = document.documentElement;
+                    sWidth.text(html.clientWidth);
+                    sHeight.text(html.clientHeight);
+                });
+
+                $('.btn-primary').click(function() {
+                    var nodes = document.querySelectorAll('.col-md-6');
+                    for (var i = 0; i < nodes.length; i++) {
+                        nodes[i].setAttribute('style', 'border: #AC2925 2px solid;');
+                    }
+                });
+
+                $('#btn2').click(function() {
+                    if ('Notification' in window) {
+                        var notification = new Notification('收到新邮件', {
+                            body : '您总共有3封未读邮件。'
+                        });
+                    }
+                });
+            });
+        </script>
+    </body>
+</html>
