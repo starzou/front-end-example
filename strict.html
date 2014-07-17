@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>use strict Example</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="app/lib/bootstrap/css/bootstrap.css"/>
+    </head>
+    <body>
+        <div class="container">
+            <h1>use strict Example</h1>
+        </div>
+
+        <script src="app/lib/jquery-1.11.1.js" type="text/javascript" charset="utf-8"></script>
+        <script src="app/lib/bootstrap/js/bootstrap.js" type="text/javascript" charset="utf-8"></script>
+
+        <script type="text/javascript" charset="utf-8">
+            (function() {'use strict';
+                var obj = {};
+                var i = 1;
+
+                var x = 2;
+                console.info(eval("var x = 5; x"));
+                console.info(x);
+
+                if (x) {
+                    var f1 = function() {
+                        console.log("f1 called...");
+                    }
+                    f1();
+                    console.log("f1");
+                }
+
+                obj.name = 'my name';
+                console.log(this, obj);
+            })();
+        </script>
+    </body>
+</html>

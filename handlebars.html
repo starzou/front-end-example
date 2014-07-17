@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Handlebars Example</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="app/lib/bootstrap-3.2.0/dist/css/bootstrap.css"/>
+    </head>
+    <body>
+        <div class="container">
+
+        </div>
+
+        <script id="kid-template" type="text/x-handlebars-template">
+            <h1>{{title}}</h1>
+            <div class="list-group">
+            {{#kids}}
+            <a href="javascript:;" class="list-group-item list-group-item-success">
+            {{name}} is {{age}}
+            </a>
+            {{/kids}}
+            </div>
+        </script>
+        <script src="app/lib/jquery-1.11.1.js" type="text/javascript" charset="utf-8"></script>
+        <script src="app/lib/bootstrap-3.2.0/dist/js/bootstrap.js" type="text/javascript" charset="utf-8"></script>
+        <script src="app/lib/handlebars/handlebars-v1.3.0.js" type="text/javascript" charset="utf-8"></script>
+
+        <script type="text/javascript" charset="utf-8">
+            var source = $('#kid-template').html();
+            var template = Handlebars.compile(source);
+            var data = {
+                "title" : "Kid list",
+                "kids" : [{
+                    "name" : "Jimmy",
+                    "age" : "12"
+                }, {
+                    "name" : "Sally",
+                    "age" : "4"
+                }]
+            };
+            var result = template(data);
+            $('.container').html(result);
+        </script>
+    </body>
+</html>

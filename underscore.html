@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>underscore.js Example</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="app/lib/bootstrap/css/bootstrap.css"/>
+    </head>
+    <body>
+        <div class="container">
+            <h1>Example</h1>
+        </div>
+
+        <script src="app/lib/jquery-1.11.1.js" type="text/javascript" charset="utf-8"></script>
+        <script src="app/lib/bootstrap/js/bootstrap.js" type="text/javascript" charset="utf-8"></script>
+        <script src="app/lib/backbone/underscore.js" type="text/javascript" charset="utf-8"></script>
+        <script type="text/javascript" charset="utf-8">
+            console.log("init...", _);
+
+            var count = _.reduce([1, 2, 3], function(i, num) {
+                return i + num
+            }, 6);
+            console.log("count:", count);
+
+            console.log("", _.shuffle([1, 2, 3, 4, 5, 6]));
+
+            var person = [{
+                name : 'John',
+                age : 40
+            }, {
+                name : 'larry',
+                age : 50
+            }, {
+                name : 'curly',
+                age : 60
+            }];
+            var pa = _.indexBy(person, 'age');
+            console.log("", pa);
+
+            var log = _.bind(console.log, console);
+
+            _.delay(log, 1000, 'logged later');
+        </script>
+    </body>
+</html>

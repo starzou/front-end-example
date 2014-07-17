@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>ECMAScript6 Example</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="app/lib/bootstrap/css/bootstrap.css"/>
+    </head>
+    <body>
+        <div class="container">
+            <h1>Example</h1>
+        </div>
+
+        <script src="app/lib/jquery-1.11.1.js" type="text/javascript" charset="utf-8"></script>
+        <script src="app/lib/bootstrap/js/bootstrap.js" type="text/javascript" charset="utf-8"></script>
+
+        <script type="module" charset="utf-8">
+            class Person{
+            constructor(name){
+            this.name = name;
+            }
+            say(){
+            console.log('hello world,i am ' + this.name);
+            }
+            }
+
+            var p = new Person('ECMAScript6');
+            p.say();
+        </script>
+    </body>
+</html>

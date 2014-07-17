@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>backbone Example</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="app/lib/bootstrap/css/bootstrap.css"/>
+    </head>
+    <body>
+        <div class="container">
+
+        </div>
+
+        <script src="app/lib/jquery-1.11.1.js" type="text/javascript" charset="utf-8"></script>
+        <script src="app/lib/bootstrap/js/bootstrap.js" type="text/javascript" charset="utf-8"></script>
+        <script src="app/lib/backbone/underscore.js" type="text/javascript" charset="utf-8"></script>
+        <script src="app/lib/backbone/backbone.js" type="text/javascript" charset="utf-8"></script>
+
+        <script type="text/template" data-name="tpl-content">
+            <h1 id="app-title" class="text-center">Title : <%= title %></h1>
+            <div class="row">
+            <div class="col-md-6" id="content-area">
+            Area
+            </div>
+            <div class="col-md-6">
+            <button id="btn1" class="btn btn-success">
+            button 1
+            </button>
+            <button id="btn2" class="btn btn-success">
+            button 2
+            </button>
+            <button id="btn3" class="btn btn-success">
+            button 3
+            </button>
+            </div>
+            </div>
+        </script>
+
+        <script type="text/javascript" charset="utf-8">
+            window.templates = {};
+
+            var $sources = $('script[type="text/template"]');
+
+            $sources.each(function(index, el) {
+                var $el = $(el);
+                templates[$el.data('name')] = _.template($el.html());
+            });
+
+        </script>
+
+        <script type="text/javascript" charset="utf-8">
+            var AppView = Backbone.View.extend({
+                el : $('.container'),
+                //              template : _.template('<span class="glyphicon glyphicon-envelope"></span>Title : <%= title %>'),
+                initialize : function() {
+                    this.render();
+                },
+                render : function() {
+                    //                  this.$el.html('This is Backbone Example.');
+                    //                  this.el.innerHTML = 'This is Backbone Example.';
+
+                    //                  this.$el.html(this.template({
+                    //                      title : 'This is Backbone Example.'
+                    //                  }));
+
+                    this.$el.html(templates['tpl-content']({
+                        title : 'This is Backbone Example.'
+                    }));
+                    console.log("templates", templates);
+                },
+                events : {
+                    'click #btn1' : 'btn1Click'
+                },
+                btn1Click : function(e) {
+                    console.log('btn1Click ...', e);
+                    $('#content-area').html('btn1Click ...' + e.timeStamp);
+                }
+            });
+
+            var appView = new AppView();
+            console.log("appView", appView);
+        </script>
+    </body>
+</html>

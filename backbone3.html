@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>backbone Model Example</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="app/lib/bootstrap/css/bootstrap.css"/>
+    </head>
+    <body>
+        <div class="container">
+            <div class="col-md-6">
+                <div id="display-area">
+
+                </div>
+            </div>
+            <div class="col-md-6">
+                <!--button[id=btn$].btn.btn-success{$}$*6-->
+                <button id="btn1" class="btn btn-success">
+                    1.
+                </button>
+                <button id="btn2" class="btn btn-success">
+                    2.
+                </button>
+            </div>
+        </div>
+
+        <script src="app/lib/jquery-1.11.1.js" type="text/javascript" charset="utf-8"></script>
+        <script src="app/lib/bootstrap/js/bootstrap.js" type="text/javascript" charset="utf-8"></script>
+        <script src="app/lib/backbone/underscore.js" type="text/javascript" charset="utf-8"></script>
+        <script src="app/lib/backbone/backbone.js" type="text/javascript" charset="utf-8"></script>
+        <script type="text/javascript" charset="utf-8">
+            var User = Backbone.Model.extend({
+                say : function() {
+                    console.log('My Name is ' + this.get('name'), this);
+                }
+            });
+
+            var Student = User.extend({
+                idAttribute : 'name'
+            });
+
+        </script>
+
+        <script type="text/javascript" charset="utf-8">
+            var divArea = $('#display-area');
+            function show(msg) {
+                divArea.html(msg);
+            }
+
+            $(function() {
+                $('#btn1').click(function() {
+                    var u1 = new User();
+                    u1.set({
+                        name : 'starzou',
+                        age : 20
+                    });
+                    u1.say();
+                });
+                $('#btn2').click(function() {
+
+                    var s1 = new Student({
+                        name : 's1'
+                    });
+                    s1.say();
+
+                    console.log("Student", Student);
+                });
+            });
+        </script>
+    </body>
+</html>

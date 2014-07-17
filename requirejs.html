@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>requirejs Example</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="app/lib/bootstrap/css/bootstrap.css"/>
+    </head>
+    <body>
+        <div class="container">
+            <h1>requirejs Example</h1>
+            <div class="row">
+                <div class="col-md-6" id="tpl1">
+
+                </div>
+                <div class="col-md-6">
+                    <div class="btn-group">
+                        <button class="btn btn-success" id="btn1">
+                            load tpl1
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="app/lib/jquery-1.11.1.js" type="text/javascript" charset="utf-8"></script>
+        <script src="app/lib/bootstrap/js/bootstrap.js" type="text/javascript" charset="utf-8"></script>
+        <script src="app/lib/requirejs/require.js" data-main="app/js/main" type="text/javascript" charset="utf-8"></script>
+        <script type="text/javascript" charset="utf-8">
+            $(function() {
+                $('#btn1').click(function() {
+                    require(['text!tpl1.html', 'jquery'], function(tpl1, $) {
+                        $('#tpl1').html(tpl1);
+                        console.log("tpl1:");
+                        console.log(tpl1);
+
+                        console.log("jquery : ", $);
+                    })
+                });
+            });
+
+        </script>
+    </body>
+</html>

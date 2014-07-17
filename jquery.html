@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>jQuery Example</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="app/lib/bootstrap/css/bootstrap.css"/>
+        <style type="text/css">
+            #display-area {
+                width: 550px;
+                height: 300px;
+                border: #339900 solid 1px;
+            }
+
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <h1 class="text-center">jQuery Example</h1>
+            <div class="row">
+                <div class="col-md-6">
+                    <div id="display-area">
+
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <!--button[id=btn$].btn.btn-success{$}$*6-->
+                    <button id="btn1" class="btn btn-success">
+                        1.
+                    </button>
+                    <button id="btn2" class="btn btn-success">
+                        2.
+                    </button>
+                    <button id="btn3" class="btn btn-success">
+                        3.
+                    </button>
+                    <button id="btn4" class="btn btn-success">
+                        4.
+                    </button>
+                    <button id="btn5" class="btn btn-success">
+                        5.
+                    </button>
+                    <button id="btn6" class="btn btn-success">
+                        6.
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <script src="app/lib/jquery-1.11.1.js" type="text/javascript" charset="utf-8"></script>
+        <script src="app/lib/bootstrap/js/bootstrap.js" type="text/javascript" charset="utf-8"></script>
+        <script type="text/javascript" charset="utf-8">
+            $(function() {
+                var divArea = $('#display-area');
+
+                $('#btn1').click(function() {
+                    divArea.text('Time : ' + new Date().getTime());
+
+                    var btns = $('button');
+                    console.log(btns);
+                    console.log(btns.get(0), btns[0], btns.get(0) === btns[0]);
+                    console.log(btns.get());
+                });
+
+                $('#btn2').click(function() {
+                    var btns = $('button');
+                    btns.each(function(i, e) {
+                        $(this).val(i);
+                        console.log(i, e === this, $(this));
+                    });
+                    btns.toggleClass('btn-success');
+                });
+
+                $('#btn3').click(function() {
+                    var btns = $('button');
+                    console.log(btns.first());
+                    console.log(btns.first().next());
+                    console.log(btns.last());
+
+                    console.log(btns.parent().parent());
+                    console.log(btns.parents('.row'));
+
+                    console.log($('.row').children());
+
+                    console.log(btns.first().next().siblings());
+
+                    console.log(btns.first().end());
+
+                });
+
+                $('#btn4').click(function() {
+                    var btns = $('button');
+                    btns.html(function(i, v) {
+                        return (v + 'button');
+                    });
+
+                    btns.val('vvv');
+                    console.log(btns.val());
+
+                });
+
+                $('#btn5').click(function() {
+                    console.log("", $(this).data('d1'));
+                    $(this).data('d1', 1);
+                    console.log("", $(this).data('d1'));
+                });
+
+                $('#btn6').click(function() {
+                    var me = $(this);
+                    var btns = me.prevAll();
+                    console.log("", btns);
+                    btns.toggle(500);
+                    //                  btns.fadeOut(350);
+                });
+
+                $('#btn1').click();
+            });
+
+        </script>
+    </body>
+</html>

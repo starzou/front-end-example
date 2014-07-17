@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>backbone Events Example</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="app/lib/bootstrap/css/bootstrap.css"/>
+    </head>
+    <body>
+        <div class="container">
+            <div class="col-md-6">
+                <div id="display-area">
+
+                </div>
+            </div>
+            <div class="col-md-6">
+                <!--button[id=btn$].btn.btn-success{$}$*6-->
+                <button id="btn1" class="btn btn-success">
+                    1.
+                </button>
+                <button id="btn2" class="btn btn-success">
+                    2.
+                </button>
+            </div>
+        </div>
+
+        <script src="app/lib/jquery-1.11.1.js" type="text/javascript" charset="utf-8"></script>
+        <script src="app/lib/bootstrap/js/bootstrap.js" type="text/javascript" charset="utf-8"></script>
+        <script src="app/lib/backbone/underscore.js" type="text/javascript" charset="utf-8"></script>
+        <script src="app/lib/backbone/backbone.js" type="text/javascript" charset="utf-8"></script>
+        <script type="text/javascript" charset="utf-8">
+            var obj = _.clone(Backbone.Events);
+            console.log(obj);
+
+            var obj2 = {
+                name : 'obj2'
+            };
+            _.extend(obj2, Backbone.Events);
+            console.log(obj2);
+
+            obj.once('e1', function() {
+                console.log(this, "e1 : ", arguments);
+            });
+
+            obj2.on('e2', function() {
+                console.log(this, "e2 : ", arguments);
+            });
+
+            var view = {
+                render : function() {
+                    console.log('view render...');
+                    show('view render...');
+                }
+            };
+            _.extend(view, Backbone.Events);
+
+            var model = {};
+            _.extend(model, Backbone.Events);
+
+            view.listenToOnce(model, 'change', view.render);
+
+        </script>
+
+        <script type="text/javascript" charset="utf-8">
+            var divArea = $('#display-area');
+            function show(msg) {
+                divArea.html(msg);
+            }
+
+            $(function() {
+                $('#btn1').click(function() {
+                    obj.trigger('e1', 'args', 1);
+                    obj2.trigger('e2', 'args', 2);
+                });
+                $('#btn2').click(function() {
+                    model.trigger('change');
+                });
+            });
+        </script>
+    </body>
+</html>
